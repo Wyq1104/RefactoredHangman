@@ -5,6 +5,22 @@ public class GameInstance implements Comparable{
     int score;
     String player;
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public String getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(String player) {
+        this.player = player;
+    }
+
     /**
      * compares scores
      * @param o
@@ -22,4 +38,8 @@ public class GameInstance implements Comparable{
         }
     }
 
+    @Override
+    public String toString() {
+        return "Player: "+player+" Score: "+score;
+    }
 }

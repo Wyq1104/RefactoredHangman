@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -79,4 +80,8 @@ public class GamesRecord {
         return highestN;
     }
 
+    @Override
+    public String toString() {
+        return gameInstances.toString();
+    }
 }
