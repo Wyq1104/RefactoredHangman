@@ -2,8 +2,8 @@
  * Class used to keep track of the score and player
  */
 public class GameInstance implements Comparable{
-    int score;
-    String player;
+    private int score;
+    private String player;
 
     public int getScore() {
         return score;

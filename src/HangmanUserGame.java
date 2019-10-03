@@ -11,9 +11,6 @@ public class HangmanUserGame extends Hangman{
      */
     @Override
     public GameInstance play() {
-        if(phraseList.size()==0){
-            System.out.println("No more games, thank you for your support.");
-        }
         GameInstance gameInstance=new GameInstance();
         Scanner scanner=new Scanner(System.in);
         System.out.println("Please enter your PlayerId");
@@ -52,9 +49,13 @@ public class HangmanUserGame extends Hangman{
      */
     @Override
     public boolean playNext() {
+        if(phraseList.size()==0) {
+            System.out.println("No more games, thank you for your support.");
+            return false;
+        }
         Scanner scanner=new Scanner(System.in);
         System.out.println("Do you want to play one more game?");
-        System.out.println("Yes: enter Y. No: enter any other thing.");
+        System.out.println("Yes: enter Y. No: enter anything else.");
         String response=scanner.nextLine();
         if(response.length()==1 && (response.charAt(0)=='Y' || response.charAt(0)=='y')){
             System.out.println("Ok, let's go.");

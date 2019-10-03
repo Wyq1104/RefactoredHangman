@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -10,8 +11,9 @@ import java.util.Random;
 public abstract class Hangman extends Game{
     String phrase;
     List<String> phraseList;
-    StringBuilder hiddenPhrase=new StringBuilder();
-    public static int TOTALCHANCES=5;
+    List<String > changeablePhraseList;
+    StringBuilder hiddenPhrase;
+    public static int TOTALCHANCES=15;
     String previousGuesses="";
 
     @Override
@@ -27,6 +29,7 @@ public abstract class Hangman extends Game{
     public void readPhrases(String filename){
         try{
             phraseList= Files.readAllLines(Paths.get(filename));
+            changeablePhraseList=new ArrayList<>(phraseList);
         }catch (IOException e){
             System.out.println(e);
         }
@@ -37,17 +40,16 @@ public abstract class Hangman extends Game{
      */
     public void randomPhrase(){
         Random random=new Random();
-        int i1=random.nextInt(phraseList.size());
-        this.phrase=phraseList.get(i1);
-        System.out.println(phraseList);
-        phraseList.remove(phrase);
-        System.out.println(phraseList);
+        int i1=random.nextInt(changeablePhraseList.size());
+        this.phrase=changeablePhraseList.get(i1);
+        changeablePhraseList.remove(phrase);
     }
 
     /**
      * get the hidden phrase from phrase
      */
     public void getHiddenPhrase(){
+        hiddenPhrase=new StringBuilder();
         for(int j=0;j<this.phrase.length();j++){
             if(Character.isLetter(this.phrase.charAt(j))==true){
                 this.hiddenPhrase.append('*');

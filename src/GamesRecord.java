@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class GamesRecord {
         // TODO: 9/28/19
         int sum=0;
         for(GameInstance gameInstance: gameInstances){
-            sum+=gameInstance.score;
+            sum+=gameInstance.getScore();
         }
         return sum/gameInstances.size();
     }
@@ -36,8 +35,8 @@ public class GamesRecord {
         int sum=0;
         int num=0;
         for(GameInstance gameInstance: gameInstances){
-            if(gameInstance.player.equals(playerId)){
-                sum+=gameInstance.score;
+            if(gameInstance.getPlayer().equals(playerId)){
+                sum+=gameInstance.getScore();
                 num++;
             }
         }
@@ -71,7 +70,7 @@ public class GamesRecord {
             String playerId, int n){
         List<GameInstance> newGameInstances=new ArrayList<>();
         for(int i=0;i<gameInstances.size();i++){
-            if(gameInstances.get(i).player.equals(playerId)){
+            if(gameInstances.get(i).getPlayer().equals(playerId)){
                 newGameInstances.add(gameInstances.get(i));
             }
         }
