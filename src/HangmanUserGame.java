@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class HangmanUserGame extends Hangman{
     HangmanUserGame(){
-        readPhrases("phrases.txt");
+        readPhrases("test.txt");
     }
     /**
      * play a game
@@ -49,7 +49,7 @@ public class HangmanUserGame extends Hangman{
      */
     @Override
     public boolean playNext() {
-        if(phraseList.size()==0) {
+        if(changeablePhraseList.size()==0) {
             System.out.println("No more games, thank you for your support.");
             return false;
         }

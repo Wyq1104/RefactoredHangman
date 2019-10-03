@@ -81,6 +81,10 @@ public class GamesRecord {
 
     @Override
     public String toString() {
-        return gameInstances.toString();
+        String str="";
+        for(GameInstance gameInstance: gameInstances){
+            str+=gameInstance+"\n";
+        }
+        return str;
     }
 }

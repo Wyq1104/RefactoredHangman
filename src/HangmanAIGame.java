@@ -2,16 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HangmanAIGame extends Hangman{
-    List<HangmanPlayer> hangmanPlayers=new ArrayList<>();
-    HangmanPlayer hangmanPlayer;
-    int playerIndex;
+    private List<HangmanPlayer> hangmanPlayers=new ArrayList<>();
+    private HangmanPlayer hangmanPlayer;
+    private int playerIndex;
 
     /**
      * set the HangmanPlayer to a default player
      */
     public HangmanAIGame() {
-        Player1 player1=new Player1();
-        hangmanPlayers.add(player1);
+        StupidPlayer stupidPlayer =new StupidPlayer();
+        hangmanPlayers.add(stupidPlayer);
         readPhrases("phrases.txt");
     }
 
@@ -21,6 +21,7 @@ public class HangmanAIGame extends Hangman{
      */
     public HangmanAIGame(HangmanPlayer player){
         hangmanPlayers.add(player);
+        readPhrases("phrases.txt");
     }
 
     /**
@@ -29,6 +30,7 @@ public class HangmanAIGame extends Hangman{
      */
     public HangmanAIGame(List<HangmanPlayer> players){
         hangmanPlayers=players;
+        readPhrases("phrases.txt");
     }
 
     @Override
@@ -73,6 +75,7 @@ public class HangmanAIGame extends Hangman{
             hangmanPlayer=null;
             playerIndex++;
             if(playerIndex==hangmanPlayers.size()){
+                System.out.println("Every player has played. See you!!!");
                 return false;
             }
         }
@@ -85,9 +88,35 @@ public class HangmanAIGame extends Hangman{
         return hangmanPlayer.nextGuess();
     }
 
-    public static void main(String[] args) {
+    public void test1stConstr(){
         HangmanAIGame hangmanAIGame=new HangmanAIGame();
         GamesRecord record = hangmanAIGame.playAll();
         System.out.println(record);
+    }
+
+    public void test2ndConstr(){
+        HangmanPlayer player1=new StupidPlayer();
+        HangmanAIGame hangmanAIGame=new HangmanAIGame(player1);
+        GamesRecord record = hangmanAIGame.playAll();
+        System.out.println(record);
+    }
+
+    public void test3rdConstr(){
+        HangmanPlayer player1=new StupidPlayer();
+        HangmanPlayer player2=new StupidPlayer();
+        List<HangmanPlayer> players=new ArrayList<>();
+        players.add(player1);
+        players.add(player2);
+        HangmanAIGame hangmanAIGame=new HangmanAIGame(players);
+        GamesRecord record = hangmanAIGame.playAll();
+        System.out.println(record);
+    }
+
+    public static void main(String[] args) {
+        HangmanPlayer player1=new RandomPlayer();
+        HangmanAIGame hangmanAIGame=new HangmanAIGame(player1);
+        GamesRecord record = hangmanAIGame.playAll();
+        System.out.println(record);
+
     }
 }
