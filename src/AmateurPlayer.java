@@ -1,6 +1,6 @@
 public class AmateurPlayer implements HangmanPlayer {
     static int playerNum=1;
-    private String Id="StupidPlayer"+playerNum;
+    private String Id="AmateurPlayer"+playerNum;
     private String alphabets="abcdefghijklmnopqrstuvwxyz";
     private int index;
 

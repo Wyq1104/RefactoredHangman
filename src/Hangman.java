@@ -29,7 +29,9 @@ public abstract class Hangman extends Game{
     public void readPhrases(String filename){
         try{
             phraseList= Files.readAllLines(Paths.get(filename));
+//            System.out.println(phraseList.hashCode());
             changeablePhraseList=new ArrayList<>(phraseList);
+//            System.out.println(changeablePhraseList.hashCode());
         }catch (IOException e){
             System.out.println(e);
         }

@@ -56,8 +56,12 @@ public class GamesRecord {
         List<GameInstance> newGameInstances=new ArrayList<>(gameInstances);
         Collections.sort(newGameInstances);
         Collections.reverse(newGameInstances);
-        List<GameInstance> highestN=newGameInstances.subList(0,n);
-        return highestN;
+        if(gameInstances.size()>=n){
+            List<GameInstance> highestN=newGameInstances.subList(0,n);
+            return highestN;
+        }else {
+            return newGameInstances;
+        }
     }
 
     /**

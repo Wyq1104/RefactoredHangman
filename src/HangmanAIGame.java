@@ -71,7 +71,7 @@ public class HangmanAIGame extends Hangman{
     @Override
     public boolean playNext() {
         if(changeablePhraseList.size()==0){
-            changeablePhraseList=phraseList;
+            changeablePhraseList=new ArrayList<>(phraseList);
             hangmanPlayer=null;
             playerIndex++;
             if(playerIndex==hangmanPlayers.size()){
@@ -114,9 +114,20 @@ public class HangmanAIGame extends Hangman{
 
     public static void main(String[] args) {
         HangmanPlayer player1=new RandomPlayer();
-        HangmanAIGame hangmanAIGame=new HangmanAIGame(player1);
+        HangmanPlayer player2=new StupidPlayer();
+        HangmanPlayer player3=new AmateurPlayer();
+        HangmanPlayer player4=new RandomPlayer();
+        List<HangmanPlayer> players=new ArrayList<>();
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        players.add(player4);
+        HangmanAIGame hangmanAIGame=new HangmanAIGame(players);
         GamesRecord record = hangmanAIGame.playAll();
         System.out.println(record);
-
+//        List highGameList=record.highGameList(5);
+//        System.out.println("High Game List:\n"+highGameList);
+//        float average=record.average();
+//        System.out.println("Average Score: "+average);
     }
 }
