@@ -95,6 +95,10 @@ public class GamesRecord {
         return gameInstances;
     }
 
+    /**
+     *
+     * @return Stirng that represents game record
+     */
     @Override
     public String toString() {
         String str="";
@@ -102,5 +106,25 @@ public class GamesRecord {
             str+=gameInstance+"\n";
         }
         return str;
+    }
+
+    /**
+     *
+     * @param obj
+     * @return if this and obj are both object of GamesRecord and have the same gameInstances
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if(this==obj){
+            return true;
+        }
+        if(obj==null || obj.getClass()!=GamesRecord.class){
+            return false;
+        }
+        GamesRecord other=(GamesRecord)obj;
+        if(this.gameInstances.equals(other.gameInstances)){
+            return true;
+        }
+        return false;
     }
 }

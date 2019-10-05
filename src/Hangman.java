@@ -9,12 +9,17 @@ import java.util.Random;
  *Provide methods used by a concrete hangman game
  */
 public abstract class Hangman extends Game{
-    String phrase;
-    List<String> phraseList;
-    List<String > changeablePhraseList;
-    StringBuilder hiddenPhrase;
+    protected String phrase;
+    protected List<String> phraseList;
+    protected List<String > changeablePhraseList;
+    protected StringBuilder hiddenPhrase;
     public static int TOTALCHANCES=15;
-    String previousGuesses="";
+    protected String previousGuesses="";
+
+
+    public void setChangeablePhraseList(List<String> phraseList) {
+        this.changeablePhraseList = new ArrayList<>(phraseList);
+    }
 
     @Override
     public abstract GameInstance play();
@@ -30,7 +35,7 @@ public abstract class Hangman extends Game{
         try{
             phraseList= Files.readAllLines(Paths.get(filename));
 //            System.out.println(phraseList.hashCode());
-            changeablePhraseList=new ArrayList<>(phraseList);
+            setChangeablePhraseList(phraseList);
 //            System.out.println(changeablePhraseList.hashCode());
         }catch (IOException e){
             System.out.println(e);
@@ -101,4 +106,33 @@ public abstract class Hangman extends Game{
      * @return
      */
     abstract char getGuess(String previousGuesses);
+
+    /**
+     *
+     * @return a phraseList read from file
+     */
+    @Override
+    public String toString() {
+        return phraseList.toString();
+    }
+
+    /**
+     *
+     * @param obj
+     * @return if this and other are both hangman and their phraseList are the same
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if(this==obj){
+            return true;
+        }
+        if(obj==null || obj.getClass()!=Hangman.class){
+            return false;
+        }
+        Hangman other=(Hangman)obj;
+        if(phraseList.equals(other.phraseList)){
+            return true;
+        }
+        return false;
+    }
 }
