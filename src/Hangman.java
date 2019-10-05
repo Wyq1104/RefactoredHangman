@@ -16,14 +16,25 @@ public abstract class Hangman extends Game{
     public static int TOTALCHANCES=15;
     protected String previousGuesses="";
 
-
+    /**
+     * change the changeablephraselist which removes guessed phrases
+     * @param phraseList
+     */
     public void setChangeablePhraseList(List<String> phraseList) {
         this.changeablePhraseList = new ArrayList<>(phraseList);
     }
 
+    /**
+     * play a game
+     * @return gameinstance
+     */
     @Override
     public abstract GameInstance play();
 
+    /**
+     * check if continue to play
+     * @return
+     */
     @Override
     public abstract boolean playNext();
 
@@ -34,9 +45,7 @@ public abstract class Hangman extends Game{
     public void readPhrases(String filename){
         try{
             phraseList= Files.readAllLines(Paths.get(filename));
-//            System.out.println(phraseList.hashCode());
             setChangeablePhraseList(phraseList);
-//            System.out.println(changeablePhraseList.hashCode());
         }catch (IOException e){
             System.out.println(e);
         }

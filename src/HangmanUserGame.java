@@ -129,6 +129,10 @@ public class HangmanUserGame extends Hangman{
     }
 
 
+    /**
+     * run the game and give feedbacks
+     * @param args
+     */
     public static void main(String[] args) {
         HangmanUserGame hangmanUserGame = new HangmanUserGame();
         GamesRecord record = hangmanUserGame.playAll();

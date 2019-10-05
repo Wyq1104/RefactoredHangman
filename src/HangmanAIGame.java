@@ -3,6 +3,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Hangman game for AI user to play
+ */
 public class HangmanAIGame extends Hangman{
     private List<HangmanPlayer> hangmanPlayers=new ArrayList<>();
     private HangmanPlayer hangmanPlayer;
@@ -35,6 +38,10 @@ public class HangmanAIGame extends Hangman{
         readPhrases("phrases.txt");
     }
 
+    /**
+     * play a game
+     * @return a gameinstance
+     */
     @Override
     public GameInstance play() {
         GameInstance gameInstance=new GameInstance();
@@ -70,6 +77,10 @@ public class HangmanAIGame extends Hangman{
         return gameInstance;
     }
 
+    /**
+     * check if there still exists AI player to play the game
+     * @return
+     */
     @Override
     public boolean playNext() {
         if(changeablePhraseList.size()==0){
@@ -84,6 +95,11 @@ public class HangmanAIGame extends Hangman{
         return true;
     }
 
+    /**
+     * get guess from AI player
+     * @param previousGuesses
+     * @return
+     */
     @Override
     char getGuess(String previousGuesses) {
         System.out.println(previousGuesses);
@@ -119,8 +135,10 @@ public class HangmanAIGame extends Hangman{
         return false;
     }
 
-
-
+    /**
+     * play game and give feedbacks
+     * @param args
+     */
     public static void main(String[] args) {
         HangmanPlayer player1=new RandomPlayer();
         HangmanPlayer player2=new StupidPlayer();
