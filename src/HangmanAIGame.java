@@ -73,7 +73,7 @@ public class HangmanAIGame extends Hangman{
     @Override
     public boolean playNext() {
         if(changeablePhraseList.size()==0){
-            changeablePhraseList=new ArrayList<>(phraseList);
+            setChangeablePhraseList(phraseList);
             hangmanPlayer=null;
             playerIndex++;
             if(playerIndex==hangmanPlayers.size()){
@@ -90,29 +90,36 @@ public class HangmanAIGame extends Hangman{
         return hangmanPlayer.nextGuess();
     }
 
-    public void test1stConstr(){
-        HangmanAIGame hangmanAIGame=new HangmanAIGame();
-        GamesRecord record = hangmanAIGame.playAll();
-        System.out.println(record);
+    /**
+     *
+     * @return a phraseList read from file
+     */
+    @Override
+    public String toString() {
+        return phraseList.toString();
     }
 
-    public void test2ndConstr(){
-        HangmanPlayer player1=new StupidPlayer();
-        HangmanAIGame hangmanAIGame=new HangmanAIGame(player1);
-        GamesRecord record = hangmanAIGame.playAll();
-        System.out.println(record);
+    /**
+     *
+     * @param obj
+     * @return if this and other are both hangman and their phraseList are the same
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if(this==obj){
+            return true;
+        }
+        if(obj==null || obj.getClass()!=HangmanAIGame.class){
+            return false;
+        }
+        HangmanAIGame other=(HangmanAIGame) obj;
+        if(phraseList.equals(other.phraseList)){
+            return true;
+        }
+        return false;
     }
 
-    public void test3rdConstr(){
-        HangmanPlayer player1=new StupidPlayer();
-        HangmanPlayer player2=new StupidPlayer();
-        List<HangmanPlayer> players=new ArrayList<>();
-        players.add(player1);
-        players.add(player2);
-        HangmanAIGame hangmanAIGame=new HangmanAIGame(players);
-        GamesRecord record = hangmanAIGame.playAll();
-        System.out.println(record);
-    }
+
 
     public static void main(String[] args) {
         HangmanPlayer player1=new RandomPlayer();
