@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class HangmanAIGame extends Hangman{
     private List<HangmanPlayer> hangmanPlayers=new ArrayList<>();
@@ -124,10 +126,20 @@ public class HangmanAIGame extends Hangman{
         players.add(player4);
         HangmanAIGame hangmanAIGame=new HangmanAIGame(players);
         GamesRecord record = hangmanAIGame.playAll();
-        System.out.println(record);
-//        List highGameList=record.highGameList(5);
-//        System.out.println("High Game List:\n"+highGameList);
-//        float average=record.average();
-//        System.out.println("Average Score: "+average);
+        System.out.println("\n"+record);
+        Set<String> playerIds=new HashSet<>();
+        for(GameInstance gameInstance: record.getGameInstances()){
+            playerIds.add(gameInstance.getPlayer());
+        }
+        System.out.println("Every player's high game list:");
+        for(String Id : playerIds){
+            System.out.println(record.highGameList(Id,3));
+        }
+        float average=record.average();
+        System.out.println("\nTotal Average Score: "+average+"\n");
+        for(String Id : playerIds){
+            float playerAverage=record.average(Id);
+            System.out.println(Id+"'s average score is "+ playerAverage);
+        }
     }
 }

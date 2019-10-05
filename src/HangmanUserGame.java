@@ -97,7 +97,7 @@ public class HangmanUserGame extends Hangman{
         HangmanUserGame hangmanUserGame = new HangmanUserGame();
         GamesRecord record = hangmanUserGame.playAll();
         System.out.println(record);
-        List highGameList=record.highGameList(5);
+        List highGameList=record.highGameList(2);
         System.out.println("High Game List:\n"+highGameList);
         float average=record.average();
         System.out.println("Average Score: "+average);

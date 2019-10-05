@@ -20,7 +20,7 @@ public class GamesRecord {
      */
     public float average(){
         // TODO: 9/28/19
-        int sum=0;
+        float sum=0;
         for(GameInstance gameInstance: gameInstances){
             sum+=gameInstance.getScore();
         }
@@ -32,8 +32,8 @@ public class GamesRecord {
      * @param playerId
      */
     public float average(String playerId){
-        int sum=0;
-        int num=0;
+        float sum=0;
+        float num=0;
         for(GameInstance gameInstance: gameInstances){
             if(gameInstance.getPlayer().equals(playerId)){
                 sum+=gameInstance.getScore();
@@ -70,17 +70,29 @@ public class GamesRecord {
      * @param n
      * @return a sorted list of the top n scores for the specified player
      */
-    public List<GameInstance> highGameList(
-            String playerId, int n){
-        List<GameInstance> newGameInstances=new ArrayList<>();
+    public List<GameInstance> highGameList(String playerId, int n){
+        List<GameInstance> playerGameInstances=new ArrayList<>();
         for(int i=0;i<gameInstances.size();i++){
             if(gameInstances.get(i).getPlayer().equals(playerId)){
-                newGameInstances.add(gameInstances.get(i));
+                playerGameInstances.add(gameInstances.get(i));
             }
         }
-        Collections.sort(newGameInstances);
-        List<GameInstance> highestN=newGameInstances.subList(0,n);
-        return highestN;
+        Collections.sort(playerGameInstances);
+        Collections.reverse(playerGameInstances);
+        if(playerGameInstances.size()>=n){
+            List<GameInstance> highestN=playerGameInstances.subList(0,n);
+            return highestN;
+        }else {
+            return playerGameInstances;
+        }
+    }
+
+    /**
+     *
+     * @return gameInstances
+     */
+    public List<GameInstance> getGameInstances() {
+        return gameInstances;
     }
 
     @Override

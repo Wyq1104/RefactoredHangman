@@ -1,5 +1,5 @@
 public class AmateurPlayer implements HangmanPlayer {
-    static int playerNum=1;
+    private static int playerNum=1;
     private String Id="AmateurPlayer"+playerNum;
     private String alphabets="abcdefghijklmnopqrstuvwxyz";
     private int index;
